@@ -1,0 +1,73 @@
+
+The ROBOTIC_ARM is a proof-of-concept Linux kernel driver for the Maplin USB
+Robotic Arm. I created it just for fun. So, don't expect much from it.
+
+INSTALLATION:
+
+Compilation process is simple. Just invoke 'make':
+
+# make
+
+if you have warnings enabled, you might see something like this:
+-------------------------------------
+linux-3ix0:~/kernel # make
+make -C /lib/modules/3.1.10-1.16-default/build PWD=/root/kernel M=/root/kernel modules
+make[1]: Entering directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
+  CC [M]  /root/kernel/robotic_arm.o
+/root/kernel/robotic_arm.c: In function ‘update_robotic_arm’:
+/root/kernel/robotic_arm.c:147:1: warning: label ‘invalid_value’ defined but not used [-Wunused-label]
+/root/kernel/robotic_arm.c: At top level:
+/root/kernel/robotic_arm.c:283:1: warning: data definition has no type or storage class [enabled by default]
+/root/kernel/robotic_arm.c:283:1: warning: type defaults to ‘int’ in declaration of ‘module_usb_driver’ [-Wimplicit-int]
+/root/kernel/robotic_arm.c:283:1: warning: parameter names (without types) in function declaration [enabled by default]
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /root/kernel/robotic_arm.mod.o
+  LD [M]  /root/kernel/robotic_arm.ko
+make[1]: Leaving directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
+
+----------------------------------------
+
+Just ignore these warnings and check whether the 'robotic_arm' module is present in the directory.
+
+
+As 'root', insert the module:
+# insmod robotic_arm.ko
+# dmesg
+[ 8808.461441] usbcore: registered new interface driver robotic_ar
+
+Now, connect the Robotic Arm to the PC.
+
+# dmesg
+...
+[ 8718.729311] robotic_arm 5-1:1.0: USB ROBOTIC ARM now attached
+
+# cd /sys/bus/usb/drivers/robotic_arm/ 
+In my case, 
+# ls
+5-1:1.0  bind  module  new_id  remove_id  uevent  unbind
+
+# cd 5-1:1.0
+# ls 
+bAlternateSetting  bInterfaceNumber    bNumEndpoints  gripmotor  motor2  power                 uevent
+basemotor          bInterfaceProtocol  driver         led        motor3  subsystem
+bInterfaceClass    bInterfaceSubClass  ep_81          modalias   motor4  supports_autosuspend
+
+TESTING:
+
+# echo 1 > basemotor 
+(This will rotate the base clockwise)
+
+# echo 2 > basemotor
+(This will rotate the base anti-clockwise)
+
+# echo 0 > basemotor
+(This will stop the base motor if it is on)
+
+# echo 1 > led
+(This will switch on the front side LED) 
+
+# echo 1 > motor3
+(This will switch on motor3)
+
+
