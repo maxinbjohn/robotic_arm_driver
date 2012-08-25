@@ -144,8 +144,6 @@ static void update_robotic_arm(struct usb_robotic_arm *robotic_arm)
 
         if (retval)
                 dev_dbg(&robotic_arm->udev->dev, "retval = %d\n", retval);
-invalid_value:
-                dev_dbg(&robotic_arm->udev->dev, "Provided invalid input value to the motor\n");
 	
 }
 
@@ -280,7 +278,7 @@ static void __exit usb_robotic_arm_exit(void)
 module_init (usb_robotic_arm_init);
 module_exit (usb_robotic_arm_exit);
 
-module_usb_driver(robotic_arm_driver);
+//module_usb_driver(robotic_arm_driver);
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

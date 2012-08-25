@@ -8,22 +8,16 @@ Compilation process is simple. Just invoke 'make':
 
 # make
 
-if you have warnings enabled, you might see something like this:
+We might see something like this:
 -------------------------------------
-linux-3ix0:~/kernel # make
-make -C /lib/modules/3.1.10-1.16-default/build PWD=/root/kernel M=/root/kernel modules
+# make
+make -C /lib/modules/3.1.10-1.16-default/build PWD=/home/maxinbjohn/robotic_arm_driver M=/home/maxinbjohn/robotic_arm_driver modules
 make[1]: Entering directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
-  CC [M]  /root/kernel/robotic_arm.o
-/root/kernel/robotic_arm.c: In function ‘update_robotic_arm’:
-/root/kernel/robotic_arm.c:147:1: warning: label ‘invalid_value’ defined but not used [-Wunused-label]
-/root/kernel/robotic_arm.c: At top level:
-/root/kernel/robotic_arm.c:283:1: warning: data definition has no type or storage class [enabled by default]
-/root/kernel/robotic_arm.c:283:1: warning: type defaults to ‘int’ in declaration of ‘module_usb_driver’ [-Wimplicit-int]
-/root/kernel/robotic_arm.c:283:1: warning: parameter names (without types) in function declaration [enabled by default]
+  CC [M]  /home/maxinbjohn/robotic_arm_driver/robotic_arm.o
   Building modules, stage 2.
   MODPOST 1 modules
-  CC      /root/kernel/robotic_arm.mod.o
-  LD [M]  /root/kernel/robotic_arm.ko
+  CC      /home/maxinbjohn/robotic_arm_driver/robotic_arm.mod.o
+  LD [M]  /home/maxinbjohn/robotic_arm_driver/robotic_arm.ko
 make[1]: Leaving directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
 
 ----------------------------------------
@@ -34,7 +28,7 @@ Just ignore these warnings and check whether the 'robotic_arm' module is present
 As 'root', insert the module:
 # insmod robotic_arm.ko
 # dmesg
-[ 8808.461441] usbcore: registered new interface driver robotic_ar
+[ 8808.461441] usbcore: registered new interface driver robotic_arm
 
 Now, connect the Robotic Arm to the PC.
 
