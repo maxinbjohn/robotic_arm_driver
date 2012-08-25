@@ -64,4 +64,9 @@ TESTING:
 # echo 1 > motor3
 (This will switch on motor3)
 
+REFERENCES:
+
+Reverse Engineering details of Robotic Arm's Protocol is available here:
+http://notbrainsurgery.livejournal.com/38622.html
+
 
