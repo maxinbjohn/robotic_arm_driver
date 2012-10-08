@@ -1,0 +1,8 @@
+TODO:
+	- provide independent control for motors in the hand
+	- various code clean-ups
+	- test on various platforms
+	- send to lkml for review
+
+Please send patches to Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+and Cc: Maxin B. John <maxin.john@gmail.com>

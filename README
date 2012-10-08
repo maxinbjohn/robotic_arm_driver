@@ -1,55 +1,38 @@
 
-The ROBOTIC_ARM is a proof-of-concept Linux kernel driver for the Maplin USB
-Robotic Arm. I created it just for fun. So, don't expect much from it.
+The USB_ROBOTIC_ARM is a proof-of-concept driver for the OWI/Maplin USB
+Robotic Arm. I created it for fun. So, don't expect much from it.
 
 INSTALLATION:
 
-Compilation process is simple. Just invoke 'make':
+Select the 'USB ROBOTIC ARM' and build the kernel.
 
-# make
-
-We might see something like this:
--------------------------------------
-# make
-make -C /lib/modules/3.1.10-1.16-default/build PWD=/home/maxinbjohn/robotic_arm_driver M=/home/maxinbjohn/robotic_arm_driver modules
-make[1]: Entering directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
-  CC [M]  /home/maxinbjohn/robotic_arm_driver/robotic_arm.o
-  Building modules, stage 2.
-  MODPOST 1 modules
-  CC      /home/maxinbjohn/robotic_arm_driver/robotic_arm.mod.o
-  LD [M]  /home/maxinbjohn/robotic_arm_driver/robotic_arm.ko
-make[1]: Leaving directory `/usr/src/linux-3.1.10-1.16-obj/i386/default'
-
-----------------------------------------
-
-Just ignore these warnings and check whether the 'robotic_arm' module is present in the directory.
-
+If we build it as module, locate the robotic_arm.ko
 
 As 'root', insert the module:
 # insmod robotic_arm.ko
 # dmesg
 [ 8808.461441] usbcore: registered new interface driver robotic_arm
 
-Now, connect the Robotic Arm to the PC.
+Connect the Robotic Arm to the PC.
 
 # dmesg
 ...
 [ 8718.729311] robotic_arm 5-1:1.0: USB ROBOTIC ARM now attached
 
-# cd /sys/bus/usb/drivers/robotic_arm/ 
-In my case, 
+# cd /sys/bus/usb/drivers/robotic_arm/
+In my case,
 # ls
 5-1:1.0  bind  module  new_id  remove_id  uevent  unbind
 
 # cd 5-1:1.0
-# ls 
+# ls
 bAlternateSetting  bInterfaceNumber    bNumEndpoints  gripmotor  motor2  power                 uevent
 basemotor          bInterfaceProtocol  driver         led        motor3  subsystem
 bInterfaceClass    bInterfaceSubClass  ep_81          modalias   motor4  supports_autosuspend
 
 TESTING:
 
-# echo 1 > basemotor 
+# echo 1 > basemotor
 (This will rotate the base clockwise)
 
 # echo 2 > basemotor
@@ -59,14 +42,18 @@ TESTING:
 (This will stop the base motor if it is on)
 
 # echo 1 > led
-(This will switch on the front side LED) 
+(This will switch on the front side LED)
 
 # echo 1 > motor3
 (This will switch on motor3)
+
+HARDWARE AVAILABILITY:
+
+OWI/Maplin USB Robotic arm is available from:
+http://www.maplin.co.uk/robotic-arm-kit-with-usb-pc-interface-266257
+http://www.owirobots.com/cart/html/owi-535pc-robotic-arm-kit-with-usb-pc-interface-assembled.html
 
 REFERENCES:
 
 Reverse Engineering details of Robotic Arm's Protocol is available here:
 http://notbrainsurgery.livejournal.com/38622.html
-
-
