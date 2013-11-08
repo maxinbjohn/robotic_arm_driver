@@ -30,22 +30,13 @@ bAlternateSetting  bInterfaceNumber    bNumEndpoints  gripmotor  motor2  power  
 basemotor          bInterfaceProtocol  driver         led        motor3  subsystem
 bInterfaceClass    bInterfaceSubClass  ep_81          modalias   motor4  supports_autosuspend
 
-TESTING:
-
-# echo 1 > basemotor
-(This will rotate the base clockwise)
-
-# echo 2 > basemotor
-(This will rotate the base anti-clockwise)
-
-# echo 0 > basemotor
-(This will stop the base motor if it is on)
-
-# echo 1 > led
-(This will switch on the front side LED)
-
-# echo 1 > motor3
-(This will switch on motor3)
+Modifications by jbh (john.hanson@cccplusplus.co.uk)
+     -   Device context now held in cmd buffer
+     -   Allow multiple motors at the same time
+     -   Add parsed file which allows a single file to control the robot
+            characters 0..8 select the device to control
+            character S=stop, F=forward, R=reverse, E=emergency (stop all motors)
+            eg   echo "0F" >parsed    causes the gripper to close
 
 HARDWARE AVAILABILITY:
 
