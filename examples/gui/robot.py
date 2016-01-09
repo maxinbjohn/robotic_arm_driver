@@ -118,12 +118,12 @@ class Robot(Gtk.Window):
                 if fnmatch.fnmatch(file, '*:*'):
                         self.file = file
 
-        self.base_motor = open("%s%s/basemotor" % (BASE_DIR,file),"w")
-        self.arm_motor = open("%s%s/motor4" % (BASE_DIR,file),"w")
-        self.elbow_motor = open("%s%s/motor3" % (BASE_DIR,file),"w")
-        self.wrist_motor = open("%s%s/motor2" % (BASE_DIR,file),"w")
-        self.jaw_motor = open ("%s%s/gripmotor" % (BASE_DIR,file),"w")
-        self.led_device = open ("%s%s/led" % (BASE_DIR,file),"w")
+        self.base_motor = open("%s%s/basemotor" % (BASE_DIR,self.file),"w")
+        self.arm_motor = open("%s%s/motor4" % (BASE_DIR,self.file),"w")
+        self.elbow_motor = open("%s%s/motor3" % (BASE_DIR,self.file),"w")
+        self.wrist_motor = open("%s%s/motor2" % (BASE_DIR,self.file),"w")
+        self.jaw_motor = open ("%s%s/gripmotor" % (BASE_DIR,self.file),"w")
+        self.led_device = open ("%s%s/led" % (BASE_DIR,self.file),"w")
 
         Gtk.Window.__init__(self,title="Robotic Arm Manual Control Program")
         self.connect("delete_event", self.delete_event)
