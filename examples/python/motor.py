@@ -41,23 +41,23 @@ if __name__ == '__main__':
 	usb_dev_name = find_usb_device()
 	
 	if ( usb_dev_name == None):
-		print "Please ensure that robotic_arm module is loaded "
-		print " Also ensure that you have connected the robotic arm "
-		print " and switched on the Robotic ARM device"
+		print("Please ensure that robotic_arm module is loaded ")
+		print(" Also ensure that you have connected the robotic arm ")
+		print(" and switched on the Robotic ARM device")
                 sys.exit(-1)
 
 	# Path for the robotic arm sysfs entries
 	robotic_arm_path= "/sys/bus/usb/drivers/robotic_arm/"+ usb_dev_name + "/"
 
 	# Switch on and off the LED in Robotic arm
-	print "LED control"
+	print("LED control")
 	led= robotic_arm_path+"led"
 	led_on(led)
 	time.sleep(1)
 	stop(led)
 
 	# Move the base 
-	print "Base Motor control"
+	print("Base Motor control")
 	base= robotic_arm_path+"basemotor"
 	move_clockwise(base)
 	time.sleep(2)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 	stop(base)
 		
 	# Move the base 
-	print "Grip control"
+	print("Grip control")
 	grip= robotic_arm_path+"gripmotor"
 	move_clockwise(grip)
 	time.sleep(1)
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 	stop(grip)
 
 	# Move the Wrist
-	print "Wrist Motor control"
+	print("Wrist Motor control")
 	wrist= robotic_arm_path+"motor2"
 	move_clockwise(wrist)
 	time.sleep(1)
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 	stop(wrist)
 
 	# Move the Elbow
-	print "Elbow Motor control"
+	print("Elbow Motor control")
 	elbow= robotic_arm_path+"motor3"
 	move_clockwise(elbow)
 	time.sleep(1)
@@ -93,7 +93,7 @@ if __name__ == '__main__':
 	stop(elbow)
 
 	# Move the Shoulder
-	print "Shoulder Motor control"
+	print("Shoulder Motor control")
 	shoulder= robotic_arm_path+"motor4"
 	move_clockwise(shoulder)
 	time.sleep(1)
